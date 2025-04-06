@@ -75,6 +75,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+
+
+
+
+
 function animateCounter(counter) {
   const target = +counter.getAttribute('data-target');
   const isMoney = counter.classList.contains('money');
@@ -113,6 +118,38 @@ const observer = new IntersectionObserver((entries) => {
 
 // Aplicar el observer a cada contador
 document.querySelectorAll('.counter-box').forEach(counterBox => observer.observe(counterBox));
+
+
+
+
+// Función para abrir el modal (debes definirla según tu lógica)
+function abrirModal(src) {
+  console.log("Abriendo modal con: " + src);
+  // Aquí iría tu código para mostrar el modal con la imagen
+}
+
+// Generar las miniaturas dinámicamente
+const galeria = document.getElementById('galeria');
+const totalImagenes = 29; // Número total de imágenes
+
+for (let i = 1; i <= totalImagenes; i++) {
+  // Crear el div contenedor
+  const div = document.createElement('div');
+  div.className = 'miniatura col-6 col-md-4 col-lg-3 d-flex justify-content-center texto-fade card';
+
+  // Crear la imagen
+  const img = document.createElement('img');
+  img.className = 'rounded';
+  img.src = `./assets/img/galeria/${i}.jpeg`;
+  img.alt = `Imagen ${i}`;
+  img.onclick = () => abrirModal(`./assets/img/galeria/${i}.jpeg`);
+
+  // Añadir la imagen al div
+  div.appendChild(img);
+
+  // Añadir el div al contenedor de la galería
+  galeria.appendChild(div);
+}
 
 
 
@@ -174,3 +211,6 @@ window.onclick = function(event) {
       modal.style.display = "none";
   }
 }
+
+
+
